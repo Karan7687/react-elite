@@ -1,23 +1,27 @@
-function UserCard({ name, character, isOnline }) {
+function UserCard({ name, surname, isOnline }) {
   return (
     <div>
       <h2>{name}</h2>
-      <p>{character}</p>
-      <p>{isOnline ? "🟢 online" : "🔴offline"}</p>
+      <p>{surname}</p>
+      <p>{isOnline ? "Available" : "Unavailable"}</p>
     </div>
   );
 }
+
 const App = () => {
-  //main function
+  const users = [
+    { id: 1, name: "Ross", surname: "Geller", isOnline: true },
+    { id: 2, name: "Rach", surname: "Green", isOnline: false },
+  ];
+
   return (
     <div>
-      {/* div packs the code into one */}
       <h1>Dashboard</h1>
-
-      <UserCard name="ROSS" character="Funny" isOnline={true} />
-      <UserCard name="Rachael" character="Stubborn" isOnline={false} />
-      {/* UserCard is function call, with parameters */}
+      {users.map((user) => (
+        <UserCard key={user.id} {...user} />
+      ))}
     </div>
   );
 };
+
 export default App;
